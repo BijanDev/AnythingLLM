@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: anything-llm
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter
+    disk:
+      name: anythingllm-storage
+      mountPath: /app/server/storage
+      sizeGB: 10
+    healthCheckPath: /api/ping
+    envVars:
+      - key: STORAGE_DIR
+        value: /app/server/storage
+      - key: SERVER_PORT
+        value: 3001
